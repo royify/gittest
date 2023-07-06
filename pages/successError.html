@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>{{msg1}}，将在<span>3</span>秒之后自动跳转到{{msg2}}页</h2>
+    <h2>如需不想等待，可以手动点击<a href="{{uri}}">{{msg2}}</a>跳转</h2>
+    <script>
+        //获取操作对象
+        var span1=document.querySelector("span")
+        var a1=document.querySelector("a")
+
+        //创建定时器
+        var dsq=setInterval(function(){
+            //获取span标签中的内容
+            var txt = span1.innerHTML
+            //修改
+            txt--
+            //判断txt是否小于等于0
+            if(txt<=0){
+                clearInterval(dsq)
+                //跳转到指定文件中
+                location.href=a1.getAttribute("href")
+            }
+            //给span标签重新赋值
+            span1.innerHTML=txt
+        },1000)
+    </script>
+</body>
+</html>
